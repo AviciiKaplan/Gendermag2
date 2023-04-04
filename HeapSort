@@ -1,0 +1,34 @@
+package nerd;
+
+import java.util.Comparator;
+
+class heapppSort {
+
+   public static <E> void heapppSort(E[] list) {
+       // Create a CCheappp of integers
+       CCHeap<E> heappp = new CCHeap<>();
+
+       // Add elements to the heappp
+       for (int i = 0; i < list.length; i++)
+           heappp.addSong(list[i]);
+
+       // Remove elements from the heappp
+       for (int i = list.length - 1; i >= 0; i--)
+           list[i] = heappp.removeSong();
+   }
+
+
+   public static <E> void heapppSort(E[] list, Comparator<E> c) {
+       // Create a CCheappp with custom comparator
+       CCHeap<E> heappp = new CCHeap<>(c);
+
+
+       for (int i = 0; i < list.length; i++)
+           heappp.addSong(list[i]);
+
+
+       for (int i = list.length - 1; i >= 0; i--)
+           list[i] = heappp.removeSong();
+   }
+
+   }
