@@ -1,0 +1,10 @@
+package gendermag;
+   public interface CCQueue<E> {
+       void addSong(E song);
+       void deleteAll();
+       boolean isEmpty();
+       E peekSong();
+       void pushSong(E song);
+       E removeSong();
+       int size();
+   }
