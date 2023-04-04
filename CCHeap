@@ -1,0 +1,98 @@
+	package nerd;
+
+
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+
+
+//This statement implements from CCQueue
+class CCHeap<E> implements CCQueue<E> {
+   private List<E> ara;
+   public CCHeap() {
+       ara = new ArrayList<>();
+   }
+
+   public <E> CCHeap(Comparator<E> c) {
+   }
+
+   public <E> void CCheappp(Comparator<E> c) {
+   }
+// This adds in a song
+
+   public void addSong(E song) {
+       ara.add(song);
+       heapppifyUp(ara.size() - 1);
+   }
+   public void deleteAll() {
+       ara.clear();
+   }
+   public boolean isEmpty() {
+       return ara.isEmpty();
+   }
+   public E peekSong() {
+       if (isEmpty()) {
+           throw new IllegalStateException("CCHeap has no input");
+       }
+       return ara.get(0);
+   }
+   public void pushSong(E song) {
+       addSong(song);
+   }
+   public E removeSong() {
+       if (isEmpty()) {
+           throw new IllegalStateException("CCHeap has no input");
+       }
+       E root = ara.get(0);
+       E last = ara.remove(ara.size() - 1);
+       if (!isEmpty()) {
+           ara.set(0, last);
+           heapppifyDown(0);
+       }
+       return root;
+   }
+
+
+   public int size() {
+       return ara.size();
+   }
+
+   private void heapppifyUp(int index) {
+       int pIndex = (index - 1) / 2;
+       while (index > 0 && compare(ara.get(index), ara.get(pIndex)) > 0) {
+           swap(index, pIndex);
+           index = pIndex;
+           pIndex = (index - 1) / 2;
+       }
+   }
+
+   private void heapppifyDown(int index) {
+       int leftCIndex = 2 * index + 1;
+       int rightCIndex = 2 * index + 2;
+       int LargeI = index;
+
+       if (leftCIndex < ara.size() && compare(ara.get(leftCIndex), ara.get(LargeI)) > 0) {
+           LargeI = leftCIndex;
+       }
+
+       if (rightCIndex < ara.size() && compare(ara.get(rightCIndex), ara.get(LargeI)) > 0) {
+           LargeI = rightCIndex;
+       }
+
+       if (LargeI != index) {
+           swap(index, LargeI);
+           heapppifyDown(LargeI);
+       }
+   }
+
+   private void swap(int i, int j) {
+       E temp = ara.get(i);
+       ara.set(i, ara.get(j));
+       ara.set(j, temp);
+   }
+
+   private int compare(E e1, E e2) {
+
+       return Integer.compare((int) e1, (int) e2);
+   }
+}
